@@ -7,6 +7,7 @@ import User from "./components/User";
 import Counter from "./components/Counter";
 import UseStateObject from "./components/UseStateObject";
 import UseStateArray from "./components/useStateArray";
+import Form from "./components/Form";
 
 const name = "Yasin";
 let surname = "Vəliyev";
@@ -29,6 +30,7 @@ function App() {
             <Counter />
             <UseStateObject />
             <UseStateArray />
+            <Form />
         </div>
     );
 }
