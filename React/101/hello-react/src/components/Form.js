@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function Form() {
     const [name, setName] = useState("Ali");
     const [surname, setSurname] = useState("Mehmet");
-    const [cinsiyyet, setCinsiyyet] = useState("Erkek");
+    const [gender, setCinsiyyet] = useState("Erkek");
+    const [form, setForm] = useState({ name: "", surname: "", gender: "" });
+    const handleChange = (event) => {
+        console.log(event);
+        setForm({
+            ...form,
+            [event.currentTarget.name]: event.currentTarget.value,
+        });
+    };
+
+    
     return (
         <div>
             <form>
@@ -12,10 +22,8 @@ function Form() {
                     type="text"
                     name="name"
                     placeholder="Isim"
-                    value={name}
-                    onChange={(event) => {
-                        setName(event.currentTarget.value);
-                    }}
+                    value={form.name}
+                    onChange={handleChange}
                 />
 
                 <label htmlFor="surname">Isim</label>
@@ -23,16 +31,13 @@ function Form() {
                     type="text"
                     name="surname"
                     placeholder="Soyad"
-                    value={surname}
-                    onChange={(event) => {
-                        setSurname(event.currentTarget.value);
-                    }}
+                    value={form.surname}
+                    onChange={handleChange}
                 />
                 <select
-                    value={cinsiyyet}
-                    onChange={(event) => {
-                        setCinsiyyet(event.currentTarget.value);
-                    }}
+                    name="gender"
+                    value={form.gender}
+                    onChange={handleChange}
                 >
                     <option value="Erkek">Erkek</option>
                     <option value="Kadin">Kadin</option>
@@ -40,9 +45,23 @@ function Form() {
             </form>
             <br />
             <div>
-                <span>
-                    {name} {surname} bir {cinsiyyet}-dir
-                </span>
+                <table border="1" cellSpacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Cinsiyyet</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{form.name}</td>
+                            <td>{form.surname}</td>
+                            <td>{form.gender}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot></tfoot>
+                </table>
             </div>
         </div>
     );
